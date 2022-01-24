@@ -13,7 +13,16 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    <form action="{{ route('admin') }}" method="get">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="text" name="search" id="search" value="{{ $search ?? "" }}" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-block btn-primary">Cari</button>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-sm table-boderless">
                         <thead>
                             <tr>

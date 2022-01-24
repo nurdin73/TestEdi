@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BioData;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,7 +33,17 @@ class HomeController extends Controller
 
     public function admin()
     {
-        $data['biodata'] = BioData::all();
+        $biodata = BioData::select('*');
+        $search = request()->search ?? "";
+        if($search != "") {
+            $biodata = $biodata->where('name', 'like', "%$search%")
+                        ->orWhere('position', 'like', "%$search%")
+                        ->orWhereHas('lastEducation', function(Builder $q) use($search) {
+                            $q->where('name', 'like', "%$search%");
+                        });
+        }
+        $data['biodata'] = $biodata->get();
+        $data['search'] = $search;
         return view('admin', $data);
     }
 }

@@ -15,6 +15,11 @@ class BioData extends Model
         return $this->hasMany(Education::class, 'bio_data_id', 'id');
     }
 
+    public function lastEducation()
+    {
+        return $this->hasOne(Education::class, 'bio_data_id', 'id')->latestOfMany();
+    }
+
     public function trainings()
     {
         return $this->hasMany(Training::class, 'bio_data_id', 'id');
