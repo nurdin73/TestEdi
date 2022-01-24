@@ -20,7 +20,7 @@
                                 <th>No</th>
                                 <th>Posisi</th>
                                 <th>Nama</th>
-                                <th>Jenis kelamin</th>
+                                <th>Tempat Tanggal lahir</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -34,7 +34,7 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $bio->position }}</td>
                                         <td>{{ $bio->name }}</td>
-                                        <td>{{ $bio->gender }}</td>
+                                        <td>{{ $bio->ttl }}</td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('biodata.show', ['biodatum' => $bio->id]) }}" class="btn btn-sm btn-primary">Detail</a>
